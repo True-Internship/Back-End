@@ -10,7 +10,7 @@ const db = mysql.createConnection({
     user:"root",
     host:"localhost",
     password:"songkeit20839",
-    database:'employeeSystem'
+    database:'employeesystem'
 })
 app.get('/employee' ,(req,res) =>{
     db.query("SELECT * FROM employee",(err,result) => {
@@ -22,25 +22,15 @@ app.get('/employee' ,(req,res) =>{
     });
 });
 
-app.post('/create',(req,res) =>{
-    const name = req.body.name;
-
-    db.query("INSERT INTO employee (name) VALUES(?)",
-    [name],
-    (err, result) =>{
-        if (err){
-            console.log(err)
-        }else{
-            res.send("Values insert")
-        }
-    }
-    );
-})
-
 app.put('/update',(req,res) =>{
     const id = req.body.id;
     const name = req.body.name;
-    db.query("UPDATE employee SET name = ? WHERE id = ?",[name,id],
+    const age = req.body.age;
+    const country = req.body.country;
+    const position = req.body.position;
+    const wage = req.body.wage;
+
+    db.query("UPDATE employee SET name = ?, age = ?, country = ?, position = ?, wage = ?  WHERE id = ?",[name,age,country,position,wage,id],//fixable follow column
     (err,result) =>{
         if(err){
             console.log(err);
