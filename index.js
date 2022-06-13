@@ -78,7 +78,7 @@ app.put('/update_temp',(req,res) =>{
 })
 
 app.get('/employee_temp_check_country' ,(req,res) =>{
-    employee_temp.query("SELECT * FROM employee_temp a LEFT join country on a.country = country.country",(err,result) => {
+    employee_temp.query("SELECT * FROM employee_temp a LEFT join country on a.country = country.country WHERE country.country IS NULL",(err,result) => {
         if(err){
             console.log(err)
         }else{
