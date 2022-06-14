@@ -6,6 +6,11 @@ const cors = require('cors');
 app.use(cors());//อนุญาติและไม่อนุญาติการร้องขอการเข้าถึงทรัพยากรอื่น
 app.use(express.json());
 
+const refreshPage = ()=>{
+    window.location.reload();
+ }
+
+
 //create database connection employee table 
 const employee = mysql.createConnection({
     user:"root",
@@ -86,6 +91,7 @@ app.get('/employee_temp_check_country' ,(req,res) =>{
         }
     });
 });
+
 
 // set port
 app.listen('3001', () => {
