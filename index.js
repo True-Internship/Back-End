@@ -1,14 +1,12 @@
 //set enviroment about database
+
+
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
 app.use(cors());//อนุญาติและไม่อนุญาติการร้องขอการเข้าถึงทรัพยากรอื่น
 app.use(express.json());
-
-const refreshPage = ()=>{
-    window.location.reload();
- }
 
 
 //create database connection employee table 
