@@ -68,14 +68,18 @@ app.post('/update_temp', (req, res) => {
     const country = req.body.country;
     const position = req.body.position;
     const wage = req.body.wage;
-    employee_temp.query("INSERT INTO employee_temp (id, name , age, country , position , wage) VALUES(?,?,?,?,?,?)", [id, name, age, country, position, wage],//fixable follow column
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                res.send(result);
-            }
-        });
+    try {
+        employee_temp.query("INSERT INTO employee_temp (id, name , age, country , position , wage) VALUES(?,?,?,?,?,?)", [id, name, age, country, position, wage],//fixable follow column
+            (err, result) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.send(result);
+                }
+            });
+    } catch (error) {
+    }
+
 })
 
 app.delete('/delete', (req, res) => {
