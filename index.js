@@ -15,7 +15,7 @@ const employee = mysql.createConnection({
     database: 'employeesystem'
 })
 app.get('/employee', (req, res) => {
-    employee.query("SELECT * FROM employee", (err, result) => {
+    employee.query("SELECT * FROM vwemployee_cp_new", (err, result) => {
         if (err) {
             console.log(err)
         } else {
@@ -24,13 +24,67 @@ app.get('/employee', (req, res) => {
     });
 });
 app.put('/update', (req, res) => {
-    const id = req.body.id;
-    const name = req.body.name;
-    const age = req.body.age;
-    const country = req.body.country;
+    const companygroup = req.body.companygroup;
+    const companyname = req.body.companyname;
+    const empid = req.body.empid;
+    const identification = req.body.identification;
+    const b_dd = req.body.b_dd;
+    const b_mm = req.body.b_mm;
+    const b_yyyy = req.body.b_yyyy;
+    const salutation_thai = req.body.salutation_thai;
+    const thai_firstname = req.body.thai_firstname;
+    const thai_lastname = req.body.thai_lastname;
+    const Thai_Fullname = req.body.Thai_Fullname;
+    const salutation_eng = req.body.salutation_eng;
+    const eng_firstname = req.body.eng_firstname;
+    const eng_lastname = req.body.eng_lastname;
     const position = req.body.position;
-    const wage = req.body.wage;
-    employee.query("UPDATE employee SET name = ?, age = ?, country = ?, position = ?, wage = ?  WHERE id = ?", [name, age, country, position, wage, id],//fixable follow column
+    const email = req.body.email;
+    const positioncode = req.body.positioncode;
+    const phone_No = req.body.phone_No;
+    const province = req.body.province;
+    const worksite = req.body.worksite;
+    const employment_Type = req.body.employment_Type;
+    const worktype = req.body.worktype;
+    const Report = req.body.Report;
+    const SalLessThan15k = req.body.SalLessThan15k;
+    const joindate = req.body.joindate;
+    const business_SIM = req.body.business_SIM;
+    const Nation = req.body.Nation;
+    const vip = req.body.vip;
+    const ConsentDM = req.body.ConsentDM;
+    employee.query("UPDATE vwemployee_cp_new SET companygroup = ?,companyname = ?,empid = ?,identification = ?,b_dd = ?,b_mm = ?,b_yyyy = ?,salutation_thai = ?,thai_firstname = ?,thai_lastname = ?,Thai_Fullname = ?,salutation_eng = ?,eng_firstname = ?,eng_lastname = ?,position = ?,email = ?,positioncode = ?,phone_No = ?,province = ?,worksite = ?,employment_Type = ?,worktype = ?,Report = ?,SalLessThan15k = ?,joindate = ?,business_SIM = ?,Nation = ?,vip = ?,ConsentDM = ? where companyname = ?",
+        [companygroup,
+            companyname,
+            empid,
+            identification,
+            b_dd,
+            b_mm,
+            b_yyyy,
+            salutation_thai,
+            thai_firstname,
+            thai_lastname,
+            Thai_Fullname,
+            salutation_eng,
+            eng_firstname,
+            eng_lastname,
+            position,
+            email,
+            positioncode,
+            phone_No,
+            province,
+            worksite,
+            employment_Type,
+            worktype,
+            Report,
+            SalLessThan15k,
+            joindate,
+            business_SIM,
+            Nation,
+            vip,
+            ConsentDM,
+            companyname,
+        ],//fixable follow column
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -62,23 +116,76 @@ app.get('/employee_temp', (req, res) => {
     });
 });
 app.post('/update_temp', (req, res) => {
-    const id = req.body.id;
-    const name = req.body.name;
-    const age = req.body.age;
-    const country = req.body.country;
+    const companygroup = req.body.companygroup
+    const companyname = req.body.companyname;
+    const empid = req.body.empid;
+    const identification = req.body.identification;
+    const b_dd = req.body.b_dd;
+    const b_mm = req.body.b_mm;
+    const b_yyyy = req.body.b_yyyy;
+    const salutation_thai = req.body.salutation_thai;
+    const thai_firstname = req.body.thai_firstname;
+    const thai_lastname = req.body.thai_lastname;
+    const Thai_Fullname = req.body.Thai_Fullname;
+    const salutation_eng = req.body.salutation_eng;
+    const eng_firstname = req.body.eng_firstname;
+    const eng_lastname = req.body.eng_lastname;
     const position = req.body.position;
-    const wage = req.body.wage;
-    try {
-        employee_temp.query("INSERT INTO employee_temp (id, name , age, country , position , wage) VALUES(?,?,?,?,?,?)", [id, name, age, country, position, wage],//fixable follow column
-            (err, result) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    res.send(result);
-                }
-            });
-    } catch (error) {
-    }
+    const email = req.body.email;
+    const positioncode = req.body.positioncode;
+    const phone_No = req.body.phone_No;
+    const province = req.body.province;
+    const worksite = req.body.worksite;
+    const employment_Type = req.body.employment_Type;
+    const worktype = req.body.worktype;
+    const Report = req.body.Report;
+    const SalLessThan15k = req.body.SalLessThan15k;
+    const joindate = req.body.joindate;
+    const business_SIM = req.body.business_SIM;
+    const Nation = req.body.Nation;
+    const vip = req.body.vip;
+    const ConsentDM = req.body.ConsentDM;
+
+    employee_temp.query("INSERT INTO employee_temp (companygroup ,companyname ,empid ,identification ,b_dd ,b_mm ,b_yyyy ,salutation_thai ,thai_firstname ,thai_lastname ,Thai_Fullname ,salutation_eng ,eng_firstname ,eng_lastname ,position ,email ,positioncode ,phone_No ,province ,worksite ,employment_Type, worktype ,Report ,SalLessThan15k ,joindate ,business_SIM ,Nation ,vip ,ConsentDM ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+        [
+            companygroup,
+            companyname,
+            empid,
+            identification,
+            b_dd,
+            b_mm,
+            b_yyyy,
+            salutation_thai,
+            thai_firstname,
+            thai_lastname,
+            Thai_Fullname,
+            salutation_eng,
+            eng_firstname,
+            eng_lastname,
+            position,
+            email,
+            positioncode,
+            phone_No,
+            province,
+            worksite,
+            employment_Type,
+            worktype,
+            Report,
+            SalLessThan15k,
+            joindate,
+            business_SIM,
+            Nation,
+            vip,
+            ConsentDM,
+        ],//fixable follow column
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+            }
+        });
+
 
 })
 
@@ -94,7 +201,19 @@ app.delete('/delete', (req, res) => {
 
 
 app.get('/employee_temp_check_country', (req, res) => {
-    employee_temp.query("SELECT * FROM employee_temp a LEFT join position on a.position = position.position LEFT JOIN country on a.country = country.country WHERE position.position IS NULL OR country.country IS NULL", (err, result) => {
+    employee_temp.query(`
+        SELECT * FROM employee_temp a 
+        LEFT join ww_employment_type on a.employment_Type = ww_employment_type.employment_Type 
+        LEFT JOIN ww_nation on a.Nation = ww_nation.nation
+        LEFT JOIN ww_province on a.province = ww_province.province
+        LEFT JOIN ww_worktype on a.worktype = ww_worktype.worktype
+        WHERE 
+        ww_employment_type.employment_Type IS NULL OR
+        ww_nation.nation IS NULL OR
+        ww_province.province IS NULL OR
+        ww_worktype.worktype IS NULL
+
+    `, (err, result) => {
         if (err) {
             console.log(err)
         } else {
