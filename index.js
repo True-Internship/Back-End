@@ -53,7 +53,7 @@ app.put('/update', (req, res) => {
     const Nation = req.body.Nation;
     const vip = req.body.vip;
     const ConsentDM = req.body.ConsentDM;
-    employee.query("UPDATE vwemployee_cp_new SET companygroup = ?,companyname = ?,empid = ?,identification = ?,b_dd = ?,b_mm = ?,b_yyyy = ?,salutation_thai = ?,thai_firstname = ?,thai_lastname = ?,Thai_Fullname = ?,salutation_eng = ?,eng_firstname = ?,eng_lastname = ?,position = ?,email = ?,positioncode = ?,phone_No = ?,province = ?,worksite = ?,employment_Type = ?,worktype = ?,Report = ?,SalLessThan15k = ?,joindate = ?,business_SIM = ?,Nation = ?,vip = ?,ConsentDM = ? where companyname = ?",
+    employee.query("UPDATE vwemployee_cp_new SET companygroup = ?,companyname = ?,empid = ?,identification = ?,b_dd = ?,b_mm = ?,b_yyyy = ?,salutation_thai = ?,thai_firstname = ?,thai_lastname = ?,Thai_Fullname = ?,salutation_eng = ?,eng_firstname = ?,eng_lastname = ?,position = ?,email = ?,positioncode = ?,phone_No = ?,province = ?,worksite = ?,employment_Type = ?,worktype = ?,Report = ?,SalLessThan15k = ?,joindate = ?,business_SIM = ?,Nation = ?,vip = ?,ConsentDM = ? where thai_firstname = ?",
         [companygroup,
             companyname,
             empid,
@@ -83,7 +83,7 @@ app.put('/update', (req, res) => {
             Nation,
             vip,
             ConsentDM,
-            companyname,
+            thai_firstname,
         ],//fixable follow column
         (err, result) => {
             if (err) {
@@ -220,6 +220,26 @@ app.get('/employee_temp_check_country', (req, res) => {
             res.send(result);
         }
     });
+});
+
+app.post('/check_composite_code', (req, res) => {
+    const GroupCode = req.body.GroupCode
+    const CompanyCode = req.body.CompanyCode
+    employee_temp.query("SELECT * FROM ww_companycode WHERE GroupCode = ? AND CompanyCode = ?",
+        [GroupCode, CompanyCode],
+        (err, result) => {
+            if (err) {
+                res.send({ err: err })
+            }
+
+            if (result.length > 0) {
+                res.send(result);
+            } else {
+                res.send({ message: "company code and group code is don't match." });
+            }
+
+
+        });
 });
 
 
