@@ -204,16 +204,24 @@ app.delete('/delete', (req, res) => {
 
 app.get('/employee_temp_check_country', (req, res) => {
     employee_temp.query(`
-        SELECT * FROM employee_temp a 
-        LEFT join ww_employment_type on a.employment_Type = ww_employment_type.employment_Type 
-        LEFT JOIN ww_nation on a.Nation = ww_nation.nation
-        LEFT JOIN ww_province on a.province = ww_province.province
-        LEFT JOIN ww_worktype on a.worktype = ww_worktype.worktype
-        WHERE 
-        ww_employment_type.employment_Type IS NULL OR
-        ww_nation.nation IS NULL OR
-        ww_province.province IS NULL OR
-        ww_worktype.worktype IS NULL
+    SELECT * FROM employee_temp a 
+    LEFT join ww_employment_type on a.employment_Type = ww_employment_type.employment_Type 
+    LEFT JOIN ww_nation on a.Nation = ww_nation.nation
+    LEFT JOIN ww_province on a.province = ww_province.province
+    LEFT JOIN ww_worktype on a.worktype = ww_worktype.worktype
+    LEFT JOIN ww_report on a.Report = ww_report.report
+    LEFT JOIN ww_sal_less_than15k on a.SalLessThan15k = ww_sal_less_than15k.salLessthan15k
+    LEFT JOIN ww_vip on a.vip = ww_vip.vip
+    LEFT JOIN ww_consentdm on a.ConsentDM = ww_consentdm.ConsentDM
+    WHERE
+    ww_employment_type.employment_Type IS NULL OR
+    ww_nation.nation IS NULL OR
+    ww_province.province IS NULL OR
+    ww_worktype.worktype IS NULL OR
+    ww_report.report IS NULL OR
+    ww_sal_less_than15k.salLessthan15k IS NULL OR
+    ww_vip.vip IS NULL OR
+    ww_consentdm.ConsentDM IS NULL
 
     `, (err, result) => {
         if (err) {
