@@ -213,6 +213,8 @@ app.get('/employee_temp_check_country', (req, res) => {
     LEFT JOIN ww_sal_less_than15k on a.SalLessThan15k = ww_sal_less_than15k.salLessthan15k
     LEFT JOIN ww_vip on a.vip = ww_vip.vip
     LEFT JOIN ww_consentdm on a.ConsentDM = ww_consentdm.ConsentDM
+    LEFT JOIN ww_phoneno on LENGTH(a.phone_No) = 10
+    
     WHERE
     ww_employment_type.employment_Type IS NULL OR
     ww_nation.nation IS NULL OR
@@ -221,7 +223,8 @@ app.get('/employee_temp_check_country', (req, res) => {
     ww_report.report IS NULL OR
     ww_sal_less_than15k.salLessthan15k IS NULL OR
     ww_vip.vip IS NULL OR
-    ww_consentdm.ConsentDM IS NULL
+    ww_consentdm.ConsentDM IS NULL OR
+    ww_phoneno.phoneNO IS NULL
 
     `, (err, result) => {
         if (err) {
