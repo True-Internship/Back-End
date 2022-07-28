@@ -53,7 +53,7 @@ app.put('/update', (req, res) => {
     const Nation = req.body.Nation;
     const vip = req.body.vip;
     const ConsentDM = req.body.ConsentDM;
-    employee.query("UPDATE vwemployee_cp_new SET companygroup = ?,companyname = ?,empid = ?,identification = ?,b_dd = ?,b_mm = ?,b_yyyy = ?,salutation_thai = ?,thai_firstname = ?,thai_lastname = ?,Thai_Fullname = ?,salutation_eng = ?,eng_firstname = ?,eng_lastname = ?,position = ?,email = ?,positioncode = ?,phone_No = ?,province = ?,worksite = ?,employment_Type = ?,worktype = ?,Report = ?,SalLessThan15k = ?,joindate = ?,business_SIM = ?,Nation = ?,vip = ?,ConsentDM = ? where companygroup = ? AND companyname = ?",
+    employee.query("UPDATE vwemployee_cp_new SET companygroup = ?,companyname = ?,empid = ?,identification = ?,b_dd = ?,b_mm = ?,b_yyyy = ?,salutation_thai = ?,thai_firstname = ?,thai_lastname = ?,Thai_Fullname = ?,salutation_eng = ?,eng_firstname = ?,eng_lastname = ?,position = ?,email = ?,positioncode = ?,phone_No = ?,province = ?,worksite = ?,employment_Type = ?,worktype = ?,Report = ?,SalLessThan15k = ?,joindate = ?,business_SIM = ?,Nation = ?,vip = ?,ConsentDM = ? where empid = ?",
         [
             companygroup,
             companyname,
@@ -84,8 +84,7 @@ app.put('/update', (req, res) => {
             Nation,
             vip,
             ConsentDM,
-            companygroup,
-            companyname,
+            empid
         ],//fixable follow column
         (err, result) => {
             if (err) {
